@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sakura Blossom</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins', sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+background:url('https://images.unsplash.com/photo-1522383225653-ed111181a951?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+position:relative;
+}
+
+/* Overlay pink lembut */
+body::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(255,182,193,0.25);
+z-index:0;
+}
+
+.container{
+position:relative;
+z-index:2;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+height:100vh;
+text-align:center;
+}
+
+h1{
+color:white;
+font-size:70px;
+text-shadow:0 0 15px rgba(255,105,180,0.8);
+animation:glow 2s infinite alternate;
+}
+
+p{
+margin-top:10px;
+color:#fff;
+font-size:20px;
+letter-spacing:2px;
+text-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 10px #ff69b4;
+}
+to{
+text-shadow:0 0 25px #ff1493;
+}
+}
+
+/* Sakura jatuh */
+.sakura{
+position:absolute;
+top:-10%;
+width:20px;
+height:20px;
+background:pink;
+border-radius:60% 40% 70% 30%;
+opacity:0.8;
+animation:fall linear infinite;
+}
+
+.sakura::before{
+content:'';
+position:absolute;
+width:20px;
+height:20px;
+background:#ffb6c1;
+border-radius:50%;
+left:8px;
+top:-5px;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px) rotate(0deg);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translateY(110vh) translateX(100px) rotate(360deg);
+opacity:0;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Sakura Blossom</h1>
+<p>Beautiful Pink Sakura Garden</p>
+</div>
+
+<!-- Tombol Gallery -->
+<button onclick="showGallery()">🌸 Gallery</button>
+
+<!-- Gallery -->
+<div id="gallery" style="display:none; margin-top:30px;">
+<img src="foto1.jpg" alt="Foto 1">
+<img src="foto2.jpg" alt="Foto 2">
+<img src="foto3.jpg" alt="Foto 3">
+</div>
+
+<style>
+#gallery{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+#gallery img{
+width:280px;
+height:180px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 4px 15px rgba(255,182,193,0.5);
+transition:0.3s;
+}
+
+#gallery img:hover{
+transform:scale(1.05);
+}
+</style>
+
+<script>
+function showGallery(){
+document.getElementById("gallery").style.display = "flex";
+}
+</script>
+
+<!-- Kelopak sakura -->
+<script>
+for(let i = 0; i < 40; i++){
+let sakura = document.createElement('div');
+sakura.classList.add('sakura');
+
+sakura.style.left = Math.random() * window.innerWidth + 'px';
+sakura.style.animationDuration = (5 + Math.random() * 10) + 's';
+sakura.style.animationDelay = Math.random() * 5 + 's';
+sakura.style.transform = `scale(${Math.random()})`;
+
+document.body.appendChild(sakura);
+}
+</script>
+
+</body>
+</html>
